@@ -55,7 +55,7 @@ export function CurrencyConverter() {
 
     try {
       const response = await fetch(
-        `https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amt}`
+        `https://api.frankfurter.app/latest?from=${from}&to=${to}`
       );
 
       if (!response.ok) {
@@ -64,12 +64,15 @@ export function CurrencyConverter() {
 
       const data = await response.json();
 
-      if (data.success === false) {
-        throw new Error(data.error?.info || 'Conversion failed');
+      if (!data.rates || !data.rates[to]) {
+        throw new Error('Invalid currency pair');
       }
 
-      setResult(data.result);
-      setRate(data.rate);
+      const rate = data.rates[to];
+      const result = parseFloat(amt) * rate;
+
+      setResult(result);
+      setRate(rate);
       setError(null);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');

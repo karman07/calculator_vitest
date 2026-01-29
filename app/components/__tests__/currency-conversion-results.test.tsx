@@ -9,9 +9,10 @@ describe('CurrencyConverter - Conversion Results', () => {
     (global.fetch as any) = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
-        success: true,
-        result: 8300,
-        rate: 83,
+        amount: 1,
+        base: 'USD',
+        date: '2026-01-29',
+        rates: { INR: 83 },
       }),
     });
   });
@@ -24,9 +25,10 @@ describe('CurrencyConverter - Conversion Results', () => {
     const mockFetch = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
-        success: true,
-        result: 8300,
-        rate: 83,
+        amount: 1,
+        base: 'USD',
+        date: '2026-01-29',
+        rates: { INR: 83 },
       }),
     });
     (global.fetch as any) = mockFetch;
@@ -42,9 +44,10 @@ describe('CurrencyConverter - Conversion Results', () => {
     const mockFetch = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
-        success: true,
-        result: 8300.456,
-        rate: 83.00456,
+        amount: 1,
+        base: 'USD',
+        date: '2026-01-29',
+        rates: { INR: 83.00456 },
       }),
     });
     (global.fetch as any) = mockFetch;
@@ -61,9 +64,10 @@ describe('CurrencyConverter - Conversion Results', () => {
     const mockFetch = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
-        success: true,
-        result: 8300,
-        rate: 83,
+        amount: 1,
+        base: 'USD',
+        date: '2026-01-29',
+        rates: { INR: 83 },
       }),
     });
     (global.fetch as any) = mockFetch;
@@ -82,16 +86,19 @@ describe('CurrencyConverter - Conversion Results', () => {
       .mockResolvedValueOnce({
         ok: true,
         json: async () => ({
-          success: true,
-          result: 8300,
-          rate: 83,
+          amount: 1,
+          base: 'USD',
+          date: '2026-01-29',
+          rates: { INR: 83 },
         }),
       })
       .mockResolvedValueOnce({
         ok: true,
         json: async () => ({
-          success: false,
-          error: { info: 'Invalid currency' },
+          amount: 1,
+          base: 'EUR',
+          date: '2026-01-29',
+          rates: {},
         }),
       });
     (global.fetch as any) = mockFetch;
@@ -125,9 +132,10 @@ describe('CurrencyConverter - Conversion Results', () => {
       .mockResolvedValueOnce({
         ok: true,
         json: async () => ({
-          success: true,
-          result: 8300,
-          rate: 83,
+          amount: 1,
+          base: 'USD',
+          date: '2026-01-29',
+          rates: { INR: 83 },
         }),
       })
       .mockRejectedValueOnce(new Error('Network error'));
@@ -158,9 +166,10 @@ describe('CurrencyConverter - Conversion Results', () => {
       .mockResolvedValueOnce({
         ok: true,
         json: async () => ({
-          success: true,
-          result: 8300,
-          rate: 83,
+          amount: 1,
+          base: 'USD',
+          date: '2026-01-29',
+          rates: { INR: 83 },
         }),
       })
       .mockImplementationOnce(() =>
@@ -170,9 +179,10 @@ describe('CurrencyConverter - Conversion Results', () => {
               resolve({
                 ok: true,
                 json: async () => ({
-                  success: true,
-                  result: 8300,
-                  rate: 83,
+                  amount: 1,
+                  base: 'USD',
+                  date: '2026-01-29',
+                  rates: { INR: 83 },
                 }),
               }),
             500

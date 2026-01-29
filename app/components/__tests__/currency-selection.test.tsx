@@ -5,13 +5,14 @@ import { renderCurrencyConverter } from './currency-test-utils';
 describe('CurrencyConverter - Currency Selection', () => {
   beforeEach(() => {
     vi.clearAllMocks();
-    // Set up fetch mock with default success response
+    // Set up fetch mock with frankfurter.app API format
     (global.fetch as any) = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
-        success: true,
-        result: 8300,
-        rate: 83,
+        amount: 1,
+        base: 'USD',
+        date: '2026-01-29',
+        rates: { INR: 83 },
       }),
     });
   });

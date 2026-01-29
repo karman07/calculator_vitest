@@ -9,9 +9,10 @@ describe('CurrencyConverter - API Integration', () => {
     (global.fetch as any) = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => ({
-        success: true,
-        result: 8300,
-        rate: 83,
+        amount: 1,
+        base: 'USD',
+        date: '2026-01-29',
+        rates: { INR: 83 },
       }),
     });
   });
@@ -28,7 +29,7 @@ describe('CurrencyConverter - API Integration', () => {
 
     await waitFor(() => {
       expect(global.fetch).toHaveBeenCalledWith(
-        expect.stringContaining('exchangerate.host')
+        expect.stringContaining('frankfurter.app')
       );
     });
   });
@@ -43,7 +44,7 @@ describe('CurrencyConverter - API Integration', () => {
       const callUrl = (global.fetch as any).mock.calls[0][0];
       expect(callUrl).toContain('from=USD');
       expect(callUrl).toContain('to=INR');
-      expect(callUrl).toContain('amount=100');
+      expect(callUrl).toContain('frankfurter.app');
     });
   });
 

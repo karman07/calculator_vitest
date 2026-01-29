@@ -42,7 +42,18 @@ export const renderCurrencyConverter = () => {
     })),
   });
 
-  // Note: Fetch mock should be set up by the test beforeEach or the test itself
+  // Set up default fetch mock for frankfurter.app API
+  if (!global.fetch) {
+    (global.fetch as any) = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        amount: 1,
+        base: 'USD',
+        date: '2026-01-29',
+        rates: { INR: 83 },
+      }),
+    });
+  }
 
   return render(
     <ThemeProvider>
