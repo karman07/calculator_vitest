@@ -2,6 +2,7 @@
 
 import { Calculator } from './components/Calculator';
 import { CurrencyConverter } from './components/CurrencyConverter';
+import Counter from './components/Counter';
 import { useTheme } from './context/ThemeContext';
 
 export default function Home() {
@@ -43,15 +44,20 @@ export default function Home() {
       {/* Main Content */}
       <main className="flex-1 p-6">
         <div className="max-w-7xl mx-auto">
-          {/* Two Column Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Three Column Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Calculator Column */}
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex justify-center">
               <Calculator />
             </div>
 
+            {/* Counter Column */}
+            <div className="flex justify-center">
+              <Counter />
+            </div>
+
             {/* Currency Converter Column */}
-            <div className="flex justify-center lg:justify-end">
+            <div className="flex justify-center">
               <CurrencyConverter />
             </div>
           </div>
